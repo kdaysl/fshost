@@ -10,13 +10,13 @@ public class mar {
         int end=0;
         int[] error = new int[30];
         int[] errorId = new int[30];
-        int symbol,ssymbol, j = 0, k = 0;
+        int symbol,sSymbol, j = 0, k = 0;
         int inResult = 0;
         int corResult = 0;
         String[] errorSymbol=new String[30];
         Random random = new Random();
         while (true) {
-            System.out.println("ÇëÊäÈëÌâÄ¿Êı£º");
+            System.out.println("è¯·è¾“å…¥é¢˜ç›®æ•°ï¼š");
             int number = 0;
             number = inputNumber.nextInt();
             for (int i = 0; i < number; i++) {
@@ -27,9 +27,9 @@ public class mar {
                 switch (symbol) {
                     case 0:
                     {
-                        ssymbol = random.nextInt(4);
+                        sSymbol = random.nextInt(4);
                         end = random.nextInt(100);
-                        switch (ssymbol){
+                        switch (sSymbol){
                             case 0:{
                                 System.out.print(i + 1 + ".  " + front + "+" + back +"+"+end+ "=");
                                 inResult = input.nextInt();
@@ -109,9 +109,9 @@ public class mar {
                             front = random.nextInt(100);
                             back = random.nextInt(100);
                         }
-                        ssymbol = random.nextInt(4);
+                        sSymbol = random.nextInt(4);
                         end = random.nextInt(100);
-                        switch (ssymbol){
+                        switch (sSymbol){
                             case 0:{
                                 System.out.print(i + 1 + ".  " + front + "-" + back +"+"+end+ "=");
                                 inResult = input.nextInt();
@@ -181,9 +181,9 @@ public class mar {
                     }
                     case 2:
                     {
-                        ssymbol = random.nextInt(4);
+                        sSymbol = random.nextInt(4);
                         end = random.nextInt(100);
-                        switch (ssymbol){
+                        switch (sSymbol){
                             case 0:{
                                 System.out.print(i + 1 + ".  " + front + "*" + back +"+"+end+ "=");
                                 inResult = input.nextInt();
@@ -260,9 +260,9 @@ public class mar {
                             front = random.nextInt(100);
                             back = random.nextInt(99) + 1;
                         }
-                        ssymbol = random.nextInt(4);
+                        sSymbol = random.nextInt(4);
                         end = random.nextInt(100);
-                        switch (ssymbol){
+                        switch (sSymbol){
                             case 0:{
                                 System.out.print(i + 1 + ".  " + front + "/" + back +"+"+end+ "=");
                                 inResult = input.nextInt();
@@ -332,7 +332,7 @@ public class mar {
                     }
                 }
             }
-            System.out.print("Ò»¹²´ğ¶ÔÁË" + correct + "µÀÌâ\n" + "ÆäÖĞ´íÎóµÄÌâºÍÆäÕıÈ·´ğ°¸Îª£º\n");
+            System.out.print("ä¸€å…±ç­”å¯¹äº†" + correct + "é“é¢˜\n" + "å…¶ä¸­é”™è¯¯çš„é¢˜å’Œå…¶æ­£ç¡®ç­”æ¡ˆä¸ºï¼š\n");
             for (int m = 0; m < j; m++) {
                 System.out.print(errorId[m] + ".  " + errorSymbol[m] + "  ");
                 System.out.print("\n");
