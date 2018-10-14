@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class mass {
+public class mar {
 
     public static int counterSum(String str) {
         int count = 0;
