@@ -1,77 +1,342 @@
+import java.util.Random;
 import java.util.Scanner;
 
+public class qq {
+    public static Scanner inputNumber = new Scanner(System.in);
+    public static void main(String[] agrs) {
+        int correct = 0;
+        int front = 0;
+        int back = 0;
+        int end=0;
+        int[] error = new int[30];
+        int[] errorId = new int[30];
+        int symbol,ssymbol, j = 0, k = 0;
+        int inResult = 0;
+        int corResult = 0;
+        String[] errorSymbol=new String[30];
+        Random random = new Random();
+        while (true) {
+            System.out.println("请输入题目数：");
+            int number = 0;
+            number = inputNumber.nextInt();
+            for (int i = 0; i < number; i++) {
+                Scanner input = new Scanner(System.in);
+                front = random.nextInt(100);
+                back = random.nextInt(100);
+                symbol = random.nextInt(4);
+                switch (symbol) {
+                    case 0:
+                    {
+                        ssymbol = random.nextInt(4);
+                        end = random.nextInt(100);
+                        switch (ssymbol){
+                            case 0:{
+                                System.out.print(i + 1 + ".  " + front + "+" + back +"+"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front + back +end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "+" + back +"+"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 1:{
+                                while (front + back<end) {
+                                    front = random.nextInt(100);
+                                    back = random.nextInt(100);
+                                    end = random.nextInt(100);
+                                }
+                                System.out.print(i + 1 + ".  " + front + "+" + back +"-"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front + back -end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "+" + back +"-"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 2:{
+                                System.out.print(i + 1 + ".  " + front + "+" + back +"*"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front * back -end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "+" + back +"*"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 3:{
+                                if (end == 0) {
+                                    end = random.nextInt(100);
+                                }
+                                while ((front + back)% end != 0) {
+                                    front = random.nextInt(100);
+                                    back = random.nextInt(100);
+                                    end = random.nextInt(99) + 1;
+                                }
+                                System.out.print(i + 1 + ".  " + front + "+" + back +"/"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front + back / end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "+" + back +"/"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                        }
 
-public class mar {
-
-    public static int counterSum(String str) {
-        int count = 0;
-        String regex ="\\+-|\\--|\\*-|\\*|\\/-|\\-|\\+|\\/";
-        String[] arr = str.startsWith("-")? str.substring(1).split(regex): str.split(regex);
-        String[] arrOp = str.split("[\\d]+");
-        int[] arrNum = new int[arr.length];
-        arrNum[0] = str.startsWith("-")? Integer.parseInt(arr[0])*-1:
-                Integer.parseInt(arr[0]);
-        for(int i =1; i<arr.length; i++){
-            if("*-".equals(arrOp[i])||"/-".equals(arrOp[i])
-                    ||"+-".equals(arrOp[i])||"--".equals(arrOp[i])){
-                arrNum[i] = Integer.parseInt(arr[i])*-1;
-                arrOp[i]=arrOp[i].substring(0, 1);
-            }else
-                arrNum[i] = Integer.parseInt(arr[i]);
-        }
-
-        if (str.indexOf("*") != -1 || str.indexOf("/") != -1) {
-            for (int i = 1; i < arrOp.length; i++) {
-                switch (arrOp[i]) {
-                    case "*":
-                        count = arrNum[i - 1] * arrNum[i];
-                        arrOp[i] = i>1?arrOp[i-1]:"+";
-                        arrNum[i - 1] = 0;
-                        arrNum[i] = count;
                         break;
-                    case "/":
-                        count = arrNum[i - 1] / arrNum[i];
-                        arrOp[i] = i>1?arrOp[i-1]:"+";
-                        arrNum[i - 1] = 0;
-                        arrNum[i] = count;
+                    }
+                    case 1:
+                    {
+                        while (front < back) {
+                            front = random.nextInt(100);
+                            back = random.nextInt(100);
+                        }
+                        ssymbol = random.nextInt(4);
+                        end = random.nextInt(100);
+                        switch (ssymbol){
+                            case 0:{
+                                System.out.print(i + 1 + ".  " + front + "-" + back +"+"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front - back +end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "-" + back +"-"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 1:{
+                                System.out.print(i + 1 + ".  " + front + "-" + back +"-"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front - back -end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front +  " - " + back +"-"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 2:{
+                                System.out.print(i + 1 + ".  " + front + "-" + back +"*"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front - back *end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "-" + back +"*"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 3:{
+                                if (end == 0) {
+                                    end = random.nextInt(100);
+                                }
+                                while ((front + back)% end != 0) {
+                                    front = random.nextInt(100);
+                                    back = random.nextInt(100);
+                                    end = random.nextInt(99) + 1;
+                                }
+                                System.out.print(i + 1 + ".  " + front + "-" + back +"/"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front - back / end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "-" + back +"/"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                        }
                         break;
+                    }
+                    case 2:
+                    {
+                        ssymbol = random.nextInt(4);
+                        end = random.nextInt(100);
+                        switch (ssymbol){
+                            case 0:{
+                                System.out.print(i + 1 + ".  " + front + "*" + back +"+"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front * back +end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "*" + back +"+"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 1:{
+                                System.out.print(i + 1 + ".  " + front + "*" + back +"-"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front * back -end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "*" + back +"-"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 2:{
+                                System.out.print(i + 1 + ".  " + front + "*" + back +"*"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front * back -end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "*" + back +"*"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 3:{
+                                if (end == 0) {
+                                    end = random.nextInt(100);
+                                }
+                                while ((front + back)% end != 0) {
+                                    front = random.nextInt(100);
+                                    back = random.nextInt(100);
+                                    end = random.nextInt(99) + 1;
+                                }
+                                System.out.print(i + 1 + ".  " + front + "*" + back +"/"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front * back / end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "*" + back +"/"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    case 3:
+                    {
+                        if (back == 0) {
+                            back = random.nextInt(99) + 1;
+                        }
+                        while (front % back != 0) {
+                            front = random.nextInt(100);
+                            back = random.nextInt(99) + 1;
+                        }
+                        ssymbol = random.nextInt(4);
+                        end = random.nextInt(100);
+                        switch (ssymbol){
+                            case 0:{
+                                System.out.print(i + 1 + ".  " + front + "/" + back +"+"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front / back +end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "/" + back +"+"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 1:{
+                                System.out.print(i + 1 + ".  " + front + "/" + back +"-"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front / back -end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "/" + back +"-"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 2:{
+                                System.out.print(i + 1 + ".  " + front + "/" + back +"*"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front / back -end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "/" + back +"*"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                            case 3:{
+                                if (end == 0) {
+                                    end = random.nextInt(100);
+                                }
+                                while ((front + back)% end != 0) {
+                                    front = random.nextInt(100);
+                                    back = random.nextInt(100);
+                                    end = random.nextInt(99) + 1;
+                                }
+                                System.out.print(i + 1 + ".  " + front + "/" + back +"/"+end+ "=");
+                                inResult = input.nextInt();
+                                corResult = front / back / end;
+                                if (inResult == corResult)
+                                    correct++;
+                                else {
+                                    errorSymbol[j] = ( front + "/" + back +"/"+end+ "="+corResult);
+                                    errorId[k] = i + 1;
+                                    j++;
+                                    k++;
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
                 }
             }
-        }
-        count = arrNum[0];
-        for (int i = 1; i < arrOp.length; i++) {
-            switch (arrOp[i]) {
-                case "+":
-                    count += arrNum[i];
-                    break;
-                case "-":
-                    count -= arrNum[i];
-                    break;
+            System.out.print("一共答对了" + correct + "道题\n" + "其中错误的题和其正确答案为：\n");
+            for (int m = 0; m < j; m++) {
+                System.out.print(errorId[m] + ".  " + errorSymbol[m] + "  ");
+                System.out.print("\n");
             }
         }
-        return count;
     }
-
-
-    public static void main(String[] args) {
-        Scanner inNumber = new Scanner(System.in);
-        System.out.println("请输入需要计算的式子：");
-        String string = inNumber.nextLine();
-        String formula = string;
-        inNumber.close();
-        while(string.indexOf("(")!=-1){
-            int indexEnd = string.indexOf(")");
-            int indexString = string.lastIndexOf("(", indexEnd);
-            String strIn = string.substring(indexString+1, indexEnd);
-            int sum = counterSum(strIn);
-            strIn = String.valueOf(sum);
-            StringBuffer strb = new StringBuffer(string);
-            strb.replace(indexString, indexEnd+1, strIn);
-            string = strb.toString();
-        }
-        int sum = counterSum(string);
-        System.out.println(formula+"="+sum);
-    }
-
-
 }
