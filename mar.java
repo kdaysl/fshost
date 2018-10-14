@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class qq {
+public class mar {
     public static Scanner inputNumber = new Scanner(System.in);
     public static void main(String[] agrs) {
         int correct = 0;
