@@ -139,7 +139,7 @@ public class mass {
         endTime=continuTime-startTime;
         time=endTime/1000;
         out.println("已花费时间"+time+'s');
-        if(time>=12){
+        if(time>=120){
             timeOut();
             exit(0);
         }
