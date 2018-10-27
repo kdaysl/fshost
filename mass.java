@@ -211,12 +211,6 @@ public class mass {
                     }
                 }
             }
-            /*out.print("一共答对了" + correct + "道题\n" + "其中错误的题和其正确答案为：\n");
-            for (int m = 0; m < j; m++) {
-                out.print(errorId[m] + ".  " + errorSymbol[m] + "  ");
-                out.print("\n");
-            }*/
-
         }
     }
 }
