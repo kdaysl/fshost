@@ -1,3 +1,5 @@
+import com.sun.javafx.css.Size;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +20,8 @@ public class Main {
         int number;
         int result;
         String[] timu=new String[5];
+        String error;
+        String[] errorId=new String[5];
         int[] daan=new int[5];
         int d1,d2,d3,d4,d5;
         Long timec;
@@ -26,18 +30,18 @@ public class Main {
         JLabel aa=new JLabel("题目：");
         JLabel bb=new JLabel("题目数量：");
         JLabel cc=new JLabel("做对的题目数：");
-        JLabel T1=new JLabel("aaaaa");
-        JLabel T2=new JLabel("aaaaa");
-        JLabel T3=new JLabel("aaaaa");
-        JLabel T4=new JLabel("aaaaa");
-        JLabel T5=new JLabel("aaaaa");
+        JLabel T1=new JLabel("");
+        JLabel T2=new JLabel("");
+        JLabel T3=new JLabel("");
+        JLabel T4=new JLabel("");
+        JLabel T5=new JLabel("");
         JLabel time=new JLabel("所用时间:");
         JTextField K1=new JTextField(8);
         JTextField K2=new JTextField(8);
         JTextField K3=new JTextField(8);
         JTextField K4=new JTextField(8);
         JTextField K5=new JTextField(8);
-        JTextField K6=new JTextField(8);
+        JTextArea K6=new JTextArea(20,300);
         JTextField Tnum=new JTextField(8);
         JButton starButton=new JButton("开始");
         JButton endButton=new JButton("确认");
@@ -49,7 +53,7 @@ public class Main {
         JPanel p1=new JPanel();
         testframe(){
             this.setTitle("四则运算");
-            this.setSize(600,600);
+            this.setSize(800,800);
             this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             this.setVisible(true);
             this.setResizable(false);
@@ -82,16 +86,19 @@ public class Main {
             //按钮
             starButton.setBounds(100,400,100,30);
             endButton.setBounds(300,400,100,30);
-            changButton.setBounds(300,450,100,30);
+            changButton.setBounds(500,400,100,30);
             //文本框
             K1.setBounds(300,130,100,30);
             K2.setBounds(300,180,100,30);
             K3.setBounds(300,230,100,30);
             K4.setBounds(300,280,100,30);
             K5.setBounds(300,330,100,30);
-            K6.setBounds(200,520,100,30);
+            K6.setBounds(200,450,300,300);
             Tnum.setBounds(300,80,100,30);
             //添加
+            JScrollPane scrollPaneN=new JScrollPane(K6);
+            K6.setLineWrap(true);
+            add(scrollPaneN,BorderLayout.SOUTH);
             p1.add(aa);
             p1.add(bb);
             p1.add(cc);
@@ -118,164 +125,164 @@ public class Main {
             changButton.addActionListener(new B());
         }
 
-         class B implements ActionListener{
+        class B implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e){
                 if (e.getSource()==starButton){
                     //点击开始按钮做的事情
-                     Long startTime=System.currentTimeMillis();
-                     timec=startTime;
+                    Long startTime=System.currentTimeMillis();
+                    timec=startTime;
                     tnumber=(int) Double.parseDouble(Tnum.getText());
-                        if (tnumber>5||tnumber<1){
-                            JOptionPane.showMessageDialog(null,"题目数量不能大于5或者等于0");
-                        }else{
-                            for (int i=0;i<tnumber;i++){
-                                int num1=new Random().nextInt(100)+1;
-                                int num2=new Random().nextInt(100)+1;
-                                int num3=new Random().nextInt(100)+1;
-                                int num4=new Random().nextInt(10)+1;
-                                int operator1=new Random().nextInt(5)+1;
-                                int operator2=new Random().nextInt(4)+1;
-                                if (operator1==1)//加法
-                                {
-                                    String a=num1+"+"+num2;
-                                    if (operator2==1){
-                                        result=num1+num2+num3;
-                                        a=a+"+"+num3+"=";
-                                    }
-                                    else if (operator2==2){
-                                        result=num1+num2;
-                                        while(result<num3){
-                                            num3=new Random().nextInt(100)+1;
-                                        }
-                                        result=result-num3;
-                                        a=a+"-"+num3+"=";
-                                    }
-                                    else if (operator2==3){
-                                        result=num2*num3;
-                                        result=result+num1;
-                                        a=a+"*"+num3+"=";
-                                    }
-                                    else if (operator2==4){
-                                        result=num2/num3;
-                                        result=result+num1;
-                                        a=a+"/"+num3+"=";
-                                    }
-                                    daan[i]=result;
-                                    timu[i]=a;
+                    if (tnumber>5||tnumber<1){
+                        JOptionPane.showMessageDialog(null,"题目数量不能大于5或者等于0");
+                    }else{
+                        for (int i=0;i<tnumber;i++){
+                            int num1=new Random().nextInt(100)+1;
+                            int num2=new Random().nextInt(100)+1;
+                            int num3=new Random().nextInt(100)+1;
+                            int num4=new Random().nextInt(10)+1;
+                            int operator1=new Random().nextInt(5)+1;
+                            int operator2=new Random().nextInt(4)+1;
+                            if (operator1==1)//加法
+                            {
+                                String a=num1+"+"+num2;
+                                if (operator2==1){
+                                    result=num1+num2+num3;
+                                    a=a+"+"+num3+"=";
                                 }
+                                else if (operator2==2){
+                                    result=num1+num2;
+                                    while(result<num3){
+                                        num3=new Random().nextInt(100)+1;
+                                    }
+                                    result=result-num3;
+                                    a=a+"-"+num3+"=";
+                                }
+                                else if (operator2==3){
+                                    result=num2*num3;
+                                    result=result+num1;
+                                    a=a+"*"+num3+"=";
+                                }
+                                else if (operator2==4){
+                                    result=num2/num3;
+                                    result=result+num1;
+                                    a=a+"/"+num3+"=";
+                                }
+                                daan[i]=result;
+                                timu[i]=a;
+                            }
 
-                                if (operator1==2)//减法
-                                {
-                                    if (operator2==1){
-                                        result=num1-num2+num3;
-                                        String a=num1+"-"+num2+"+"+num3+"=";
-                                        timu[i]=a;
-                                        daan[i]=result;
-                                    }
-                                    else if (operator2==2) {
-                                        while ((num1-num2)<num3){
-                                            num1=new Random().nextInt(100)+1;
-                                            num2=new Random().nextInt(100)+1;
-                                            num3=new Random().nextInt(100)+1;
-                                        }
-                                        result=num1-num2-num3;
-                                        String a=num1+"-"+num2+"-"+num3+"=";
-                                        //a=a+"-"+num3+"="+result;
-                                        timu[i]=a;
-                                        daan[i]=result;
-                                    }
-                                    else if (operator2==3){
-                                        while (num1<(num2*num3)){
-                                            num1=new Random().nextInt(100)+1;
-                                            num2=new Random().nextInt(100)+1;
-                                            num3=new Random().nextInt(100)+1;
-                                        }
-                                        result=num2*num3;
-                                        result=num1-result;
-                                        String a=num1+"-"+num2+"*"+num3+"=";
-                                        //a=a+"*"+num3+"="+result;
-                                        timu[i]=a;
-                                        daan[i]=result;
-                                    }
-                                    else if (operator2==4){
-                                        while (num1<(num2/num3)){
-                                            num1=new Random().nextInt(100)+1;
-                                            num2=new Random().nextInt(100)+1;
-                                            num3=new Random().nextInt(100)+1;
-                                        }
-                                        result=num2/num3;
-                                        result=num1-result;
-                                        String a=num1+"-"+num2+"/"+num3+"=";
-                                        //a=a+"/"+num3+"="+result;
-                                        timu[i]=a;
-                                        daan[i]=result;
-                                    }
-                                }
-
-                                if (operator1==3)//乘法
-                                {
-                                    String a=num1+"*"+num2;
-                                    result=num1*num2;
-                                    if (operator2==1) {
-                                        result=result+num3;
-                                        a=a+"+"+num3+"=";
-                                    }
-                                    else if (operator2==2){
-                                        while (result<num3){
-                                            num3=new Random().nextInt(100)+1;
-                                        }
-                                        result=result-num3;
-                                        a=a+"-"+num3+"=";
-                                    }
-                                    else if (operator2==3){
-                                        result=result*num3;
-                                        a=a+"*"+num3+"=";
-                                    }
-                                    else if (operator2==4){
-                                        result=result/num3;
-                                        a=a+"/"+num3+"=";
-                                    }
+                            if (operator1==2)//减法
+                            {
+                                if (operator2==1){
+                                    result=num1-num2+num3;
+                                    String a=num1+"-"+num2+"+"+num3+"=";
                                     timu[i]=a;
                                     daan[i]=result;
                                 }
-                                if (operator1==4)//除法
-                                {
-                                    String a=num1+"/"+num2;
-                                    result=num1/num2;
-                                    if (operator2==1){
-                                        result=result+num3;
-                                        a=a+"+"+num3+"=";
+                                else if (operator2==2) {
+                                    while ((num1-num2)<num3){
+                                        num1=new Random().nextInt(100)+1;
+                                        num2=new Random().nextInt(100)+1;
+                                        num3=new Random().nextInt(100)+1;
                                     }
-                                    else if (operator2==2){
-                                        while (result<num3){
-                                            num3=new Random().nextInt(100)+1;
-                                        }
-                                        result=result-num3;
-                                        a=a+"-"+num3+"=";
-                                    }
-                                    else if (operator2==3){
-                                        result=result*num3;
-                                        a=a+"*"+num3+"=";
-                                    }
-                                    else if (operator2==4){
-                                        result=result/num3;
-                                        a=a+"/"+num3+"=";
-                                    }
+                                    result=num1-num2-num3;
+                                    String a=num1+"-"+num2+"-"+num3+"=";
+                                    //a=a+"-"+num3+"="+result;
                                     timu[i]=a;
                                     daan[i]=result;
                                 }
-                                if (operator1==5){
-                                    timu[i]=num4+"!";
-                                    daan[i]= (int) factorial(num4);
+                                else if (operator2==3){
+                                    while (num1<(num2*num3)){
+                                        num1=new Random().nextInt(100)+1;
+                                        num2=new Random().nextInt(100)+1;
+                                        num3=new Random().nextInt(100)+1;
+                                    }
+                                    result=num2*num3;
+                                    result=num1-result;
+                                    String a=num1+"-"+num2+"*"+num3+"=";
+                                    //a=a+"*"+num3+"="+result;
+                                    timu[i]=a;
+                                    daan[i]=result;
+                                }
+                                else if (operator2==4){
+                                    while (num1<(num2/num3)){
+                                        num1=new Random().nextInt(100)+1;
+                                        num2=new Random().nextInt(100)+1;
+                                        num3=new Random().nextInt(100)+1;
+                                    }
+                                    result=num2/num3;
+                                    result=num1-result;
+                                    String a=num1+"-"+num2+"/"+num3+"=";
+                                    //a=a+"/"+num3+"="+result;
+                                    timu[i]=a;
+                                    daan[i]=result;
                                 }
                             }
-                            T1.setText(timu[0]);
-                            T2.setText(timu[1]);
-                            T3.setText(timu[2]);
-                            T4.setText(timu[3]);
-                            T5.setText(timu[4]);
+
+                            if (operator1==3)//乘法
+                            {
+                                String a=num1+"*"+num2;
+                                result=num1*num2;
+                                if (operator2==1) {
+                                    result=result+num3;
+                                    a=a+"+"+num3+"=";
+                                }
+                                else if (operator2==2){
+                                    while (result<num3){
+                                        num3=new Random().nextInt(100)+1;
+                                    }
+                                    result=result-num3;
+                                    a=a+"-"+num3+"=";
+                                }
+                                else if (operator2==3){
+                                    result=result*num3;
+                                    a=a+"*"+num3+"=";
+                                }
+                                else if (operator2==4){
+                                    result=result/num3;
+                                    a=a+"/"+num3+"=";
+                                }
+                                timu[i]=a;
+                                daan[i]=result;
+                            }
+                            if (operator1==4)//除法
+                            {
+                                String a=num1+"/"+num2;
+                                result=num1/num2;
+                                if (operator2==1){
+                                    result=result+num3;
+                                    a=a+"+"+num3+"=";
+                                }
+                                else if (operator2==2){
+                                    while (result<num3){
+                                        num3=new Random().nextInt(100)+1;
+                                    }
+                                    result=result-num3;
+                                    a=a+"-"+num3+"=";
+                                }
+                                else if (operator2==3){
+                                    result=result*num3;
+                                    a=a+"*"+num3+"=";
+                                }
+                                else if (operator2==4){
+                                    result=result/num3;
+                                    a=a+"/"+num3+"=";
+                                }
+                                timu[i]=a;
+                                daan[i]=result;
+                            }
+                            if (operator1==5){
+                                timu[i]=num4+"!=";
+                                daan[i]= (int) factorial(num4);
+                            }
                         }
+                        T1.setText(timu[0]);
+                        T2.setText(timu[1]);
+                        T3.setText(timu[2]);
+                        T4.setText(timu[3]);
+                        T5.setText(timu[4]);
+                    }
                 }
                 if (e.getSource()==endButton){
                     //点击确认按钮做的事情
@@ -288,38 +295,58 @@ public class Main {
                     d4=(int) Double.parseDouble(K4.getText());
                     d5=(int) Double.parseDouble(K5.getText());
                     int answerT=0,answerF=0;
+                    int count=0;
+                    int errCount=0;
+                    error="";
                     if (d1==daan[0]){
                         K1.setText(String.valueOf(daan[0]));
                         answerT++;
+                        count++;
                     }else{
                         answerF++;
+                        count++;
+                        error=error+count+":"+timu[0]+daan[0]+"   \n";
+                        errCount++;
                     }
                     if (d2==daan[1]){
                         K1.setText(String.valueOf(daan[1]));
                         answerT++;
+                        count++;
                     }else{
                         answerF++;
+                        count++;
+                        error=error+count+":"+timu[1]+daan[1]+"   \n";
+                        errCount++;
                     }
                     if (d3==daan[2]){
                         K1.setText(String.valueOf(daan[2]));
+                        count++;
                         answerT++;
                     }else{
                         answerF++;
+                        count++;
+                        error=error+count+":"+timu[2]+daan[2]+"   \n";
                     }
                     if (d4==daan[3]){
                         K1.setText(String.valueOf(daan[3]));
+                        count++;
                         answerT++;
                     }else{
                         answerF++;
+                        count++;
+                        error=error+count+":"+timu[3]+daan[3]+"   \n";
                     }
                     if (d5==daan[4]){
                         K1.setText(String.valueOf(daan[4]));
+                        count++;
                         answerT++;
                     }else{
                         answerF++;
+                        count++;
+                        error=error+count+":"+timu[4]+daan[4]+"   \n";
                     }
 
-                    K6.setText(String.valueOf(answerT));
+                    K6.setText("你一共做对了"+String.valueOf(answerT)+"道题\n"+"错误题目如下 \n"+error);
                 }
                 if (e.getSource()==changButton){
                     //点击改变颜色按钮事件
